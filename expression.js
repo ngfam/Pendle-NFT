@@ -58,6 +58,7 @@ function expressionA(gqlResp) {
 */
 
 function expressionB(gqlResp) {
+    gqlResp = gqlResp.userB;
     const startDay = 18851;
     function getNumDay(l, r) { 
         if (l < startDay) l = startDay;
