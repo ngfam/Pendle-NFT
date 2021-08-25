@@ -15,7 +15,7 @@ const { gql, request } = require('graphql-request');
 function expressionA(gqlResp) {
     gqlResp = gqlResp.userA;
     if (!gqlResp) return 0;
-    const startWeek = 2693;
+    const startWeek = 2695;
     function getNumWeek(l, r) { 
         if (l < startWeek) l = startWeek;
         if (l > r) return 0;
@@ -62,7 +62,7 @@ function expressionB(gqlResp) {
     gqlResp = gqlResp.userB;
     if (!gqlResp) return 0;
 
-    const startDay = 18851;
+    const startDay = 18865;
     function getNumDay(l, r) { 
         if (l < startDay) l = startDay;
         if (l > r) return 0;
