@@ -14,14 +14,15 @@ const { gql, request } = require('graphql-request');
 
 function expressionA(gqlResp) {
     gqlResp = gqlResp.userA;
+    if (!gqlResp) return 0;
     const startWeek = 2693;
     function getNumWeek(l, r) { 
         if (l < startWeek) l = startWeek;
         if (l > r) return 0;
         return r - l + 1;
     }
-    const amountX = 160;
-    const amountY = 800;
+    const amountX = 400;
+    const amountY = 1600;
 
     let week = 86400 * 7;
     let box = gqlResp.box;
@@ -59,13 +60,15 @@ function expressionA(gqlResp) {
 
 function expressionB(gqlResp) {
     gqlResp = gqlResp.userB;
+    if (!gqlResp) return 0;
+
     const startDay = 18851;
     function getNumDay(l, r) { 
         if (l < startDay) l = startDay;
         if (l > r) return 0;
         return r - l + 1;
     }
-    const amountY = 800;
+    const amountY = 1600;
 
     let day = 86400;
     let box = gqlResp.box;
@@ -85,21 +88,21 @@ function expressionB(gqlResp) {
 
 
 async function main() {
-    const userAddress = "0x8609681d56187365f1827d278b83e8dfcf179ecc";
+    const userAddress = "0xffc21269d65cc460978c7b9e3474c7d831ee3cbb";
     const url = "https://api.thegraph.com/subgraphs/name/ngfam/pendle-nft2";
     let gqlResp = await request(url, gql`
         {
-            userA(id: \"${userAddress}\") {
+            userB(id: \"${userAddress}\") {
                 id,
                 box,
                 lpHolding,
                 updatedAt,
-                lpMinThisWeek
+                lpMinToday
             }
         }
     `);
 
-    console.log(expressionA(gqlResp));
+    console.log(expressionB(gqlResp));
 }
 
 main();
